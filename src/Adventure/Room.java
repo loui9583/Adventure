@@ -1,4 +1,6 @@
- public class Room{
+package Adventure;
+
+public class Room{
 
    Room west;
    Room east;
