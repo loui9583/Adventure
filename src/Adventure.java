@@ -119,6 +119,8 @@ public class Adventure {
         case "LOOK":
           System.out.println(currentRoom.navn);
           System.out.println("Du har været i dette rum " + currentRoom.counter + " gange");
+          break;
+
         default:
           System.out.println("Wrong input");
       }
