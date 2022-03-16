@@ -23,11 +23,7 @@
    Room(String navn){
     this.navn=navn;
   }
-  void addtocounter(){
+  void addToCounter(){
     counter+=1;
   }
-   void go (){
-     System.out.println(navn);
-   }
-
  }

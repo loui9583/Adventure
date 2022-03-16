@@ -11,15 +11,10 @@ public class Adventure {
   static Room room8 = new Room("Rum 8");
   static Room room9 = new Room("Rum 9");
 
-
   static Room currentRoom;
 
-  static public Room getCurrentRoom() {
-    return currentRoom;
-  }
-
-  static public void setCurrentRoom(Room currentroom) {
-    currentRoom = currentroom;
+  static public void setCurrentRoom(Room room) {
+    currentRoom = room;
   }
 
   public static void main(String[] args) {
@@ -77,52 +72,40 @@ public class Adventure {
 
     String help = "Instructions: \n Enter N to go north. Enter S to go south. Enter W to go west. Enter E to go east.\nAdditionally, you can write HELP to view instructions again, and write EXIT to exit the program. ";
     setCurrentRoom(room1);
-    currentRoom.addtocounter();
+    currentRoom.addToCounter();
     System.out.println("Welcome to the game!\n" + help);
     boolean loop = true;
-    while (loop == true) {
+    while (loop) {
       String menu = new Scanner(System.in).nextLine();
       menu = menu.toUpperCase();
       switch (menu) {
-        case "E":
+        case "E" -> {
           if (currentRoom.east == currentRoom) System.out.println("du kan ikke gå denne vej");
           setCurrentRoom(currentRoom.east);
-          currentRoom.addtocounter();
-
-          break;
-        case "W":
+          currentRoom.addToCounter();
+        }
+        case "W" -> {
           if (currentRoom.west == currentRoom) System.out.println("du kan ikke gå denne vej");
           setCurrentRoom(currentRoom.west);
-          currentRoom.addtocounter();
-          break;
-
-        case "S":
+          currentRoom.addToCounter();
+        }
+        case "S" -> {
           if (currentRoom.south == currentRoom) System.out.println("du kan ikke gå denne vej");
           setCurrentRoom(currentRoom.south);
-          currentRoom.addtocounter();
-          break;
-
-        case "N":
+          currentRoom.addToCounter();
+        }
+        case "N" -> {
           if (currentRoom.north == currentRoom) System.out.println("du kan ikke gå denne vej");
           setCurrentRoom(currentRoom.north);
-          currentRoom.addtocounter();
-          break;
-
-        case "EXIT":
-          loop = false;
-          break;
-
-        case "HELP":
-          System.out.println(help);
-          break;
-
-        case "LOOK":
+          currentRoom.addToCounter();
+        }
+        case "EXIT" -> loop = false;
+        case "HELP" -> System.out.println(help);
+        case "LOOK" -> {
           System.out.println(currentRoom.navn);
           System.out.println("Du har været i dette rum " + currentRoom.counter + " gange");
-          break;
-
-        default:
-          System.out.println("Wrong input");
+        }
+        default -> System.out.println("Wrong input");
       }
     }
   }
