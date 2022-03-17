@@ -1,59 +1,65 @@
 package Adventure;
 
 public class Map {
+  Player player = new Player();
 
+  Room room1 = new Room("Rum 1");
+  Room room2 = new Room("Rum 2");
+  Room room3 = new Room("Rum 3");
+  Room room4 = new Room("Rum 4");
+  Room room5 = new Room("Rum 5");
+  Room room6 = new Room("Rum 6");
+  Room room7 = new Room("Rum 7");
+  Room room8 = new Room("Rum 8");
+  Room room9 = new Room("Rum 9");
 
+  public void setCurrentRoom(Room room) {
 
-  static public void setCurrentRoom(Room room) {
+    player.currentRoom = room;
 
+    room1.setEast(room2);
+    room1.setSouth(room4);
+    room1.setWest(room1);
+    room1.setNorth(room1);
 
+    room2.setWest(room1);
+    room2.setEast(room3);
+    room2.setNorth(room2);
+    room2.setSouth(room2);
 
-    Player.currentRoom = room;
+    room3.setWest(room2);
+    room3.setSouth(room6);
+    room3.setNorth(room3);
+    room3.setEast(room3);
 
-    Creator.room1.setEast(Creator.room2);
-    Creator.room1.setSouth(Creator.room4);
-    Creator.room1.setWest(Creator.room1);
-    Creator.room1.setNorth(Creator.room1);
+    room4.setNorth(room1);
+    room4.setSouth(room7);
+    room4.setWest(room4);
+    room4.setEast(room4);
 
-    Creator.room2.setWest(Creator.room1);
-    Creator.room2.setEast(Creator.room3);
-    Creator.room2.setNorth(Creator.room2);
-    Creator.room2.setSouth(Creator.room2);
+    room5.setSouth(room8);
+    room5.setWest(room5);
+    room5.setEast(room5);
+    room5.setNorth(room5);
 
-    Creator.room3.setWest(Creator.room2);
-    Creator.room3.setSouth(Creator.room6);
-    Creator.room3.setNorth(Creator.room3);
-    Creator.room3.setEast(Creator.room3);
+    room6.setNorth(room3);
+    room6.setSouth(room9);
+    room6.setWest(room6);
+    room6.setEast(room6);
 
-    Creator.room4.setNorth(Creator.room1);
-    Creator.room4.setSouth(Creator.room7);
-    Creator.room4.setWest(Creator.room4);
-    Creator.room4.setEast(Creator.room4);
+    room7.setNorth(room4);
+    room7.setEast(room8);
+    room7.setWest(room7);
+    room7.setSouth(room7);
 
-    Creator.room5.setSouth(Creator.room8);
-    Creator.room5.setWest(Creator.room5);
-    Creator.room5.setEast(Creator.room5);
-    Creator.room5.setNorth(Creator.room5);
+    room8.setNorth(room5);
+    room8.setWest(room7);
+    room8.setEast(room9);
+    room8.setSouth(room8);
 
-    Creator.room6.setNorth(Creator.room3);
-    Creator.room6.setSouth(Creator.room9);
-    Creator.room6.setWest(Creator.room6);
-    Creator.room6.setEast(Creator.room6);
-
-    Creator.room7.setNorth(Creator.room4);
-    Creator.room7.setEast(Creator.room8);
-    Creator.room7.setWest(Creator.room7);
-    Creator.room7.setSouth(Creator.room7);
-
-    Creator.room8.setNorth(Creator.room5);
-    Creator.room8.setWest(Creator.room7);
-    Creator.room8.setEast(Creator.room9);
-    Creator.room8.setSouth(Creator.room8);
-
-    Creator.room9.setNorth(Creator.room6);
-    Creator.room9.setWest(Creator.room8);
-    Creator.room9.setSouth(Creator.room9);
-    Creator.room9.setEast(Creator.room9);
-
+    room9.setNorth(room6);
+    room9.setWest(room8);
+    room9.setSouth(room9);
+    room9.setEast(room9);
   }
 }
