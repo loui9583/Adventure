@@ -1,7 +1,12 @@
 package Adventure;
 
+import java.util.ArrayList;
+
 public class Room {
 
+  ItemManager itemManager = new ItemManager();
+
+  ArrayList<Item> roomItems = new ArrayList<>();
 
   Room west;
   Room east;

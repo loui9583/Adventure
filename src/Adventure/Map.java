@@ -13,8 +13,8 @@ public class Map {
   Room room8 = new Room("Rum 8");
   Room room9 = new Room("Rum 9");
 
-  public void setCurrentRoom(Room room) {
 
+  public void setCurrentRoom(Room room) {
     player.currentRoom = room;
 
     room1.setEast(room2);
@@ -62,4 +62,30 @@ public class Map {
     room9.setSouth(room9);
     room9.setEast(room9);
   }
+
+  Map(){
+    room1.roomItems.add(room1.itemManager.sword);
+    room1.roomItems.add(room1.itemManager.potion);
+
+
+
+  }
+  void lookForItem(String targetName) {
+    for (int i = 0; i < player.currentRoom.roomItems.size(); i++) {
+      if (targetName.equals(player.currentRoom.roomItems.get(i).getNavn())) {
+        player.inventory.add(player.currentRoom.roomItems.get(i));
+
+        System.out.println("You found a "+ player.currentRoom.roomItems.get(i).getLangtNavn()+"! "+room1.roomItems.get(i).getLangtNavn()+" added to inventory.");
+        player.currentRoom.roomItems.remove(i);
+        break;
+      }
+    }
+
+  }
+
+
 }
+
+
+
+
