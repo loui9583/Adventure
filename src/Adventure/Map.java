@@ -78,7 +78,16 @@ public class Map {
     room9.setSouth(room9);
     room9.setEast(room9);
   }
-  /*void lookForItem(String targetName) {
+  /*
+  Metode til at kunne 'take' et item op med kortNavn, så hvis man fx. fandt et
+  "Divine Sword" kunne man nøjes med at skrive "Sword" for at tage det,
+  men den metode gav ikke mening fordi man ikke kunne vælge hvilket item man vil
+  'take' hvis der var flere af samme slags, fx hvis der var både et
+  "Great Shield" og et "Divine Shield".
+  .
+  .
+  .
+  void lookForItem(String targetName) {
     for (int i = 0; i < player.currentRoom.roomItems.size(); i++) {
       if (targetName.equals(player.currentRoom.roomItems.get(i).getNavn())) {
         player.inventory.add(player.currentRoom.roomItems.get(i));
@@ -87,7 +96,8 @@ public class Map {
         break;
       }
     }
-  }*/
+  }
+  */
 
   void lookForItem(String targetName) {
 
