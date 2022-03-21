@@ -4,35 +4,28 @@ public class Map {
 
   ItemManager itemManager = new ItemManager();
 
-  Player player = new Player();
-
-  Room room1 = new Room("Room 1");
-  Room room2 = new Room("Room 2");
-  Room room3 = new Room("Room 3");
-  Room room4 = new Room("Room 4");
-  Room room5 = new Room("Room 5");
-  Room room6 = new Room("Room 6");
-  Room room7 = new Room("Room 7");
-  Room room8 = new Room("Room 8");
-  Room room9 = new Room("Room 9");
-
+  private final Room room1 = new Room("Room 1");
+  private final Room room2 = new Room("Room 2");
+  private final Room room3 = new Room("Room 3");
+  private final Room room4 = new Room("Room 4");
+  private final Room room5 = new Room("Room 5");
+  private final Room room6 = new Room("Room 6");
+  private final Room room7 = new Room("Room 7");
+  private final Room room8 = new Room("Room 8");
+  private final Room room9 = new Room("Room 9");
 
   Map() {
-    room1.roomItems.add(itemManager.divineSword) ;
-    room2.roomItems.add(itemManager.greatPotion) ;
-    room3.roomItems.add(itemManager.greatShield) ;
-    room4.roomItems.add(itemManager.divineShield);
-    room5.roomItems.add(itemManager.map)         ;
-    room5.roomItems.add(itemManager.godStaff)    ;
-    room6.roomItems.add(itemManager.sorcererStaff) ;
-    room7.roomItems.add(itemManager.strengthPotion) ;
-    room8.roomItems.add(itemManager.magicPotion);
-    room9.roomItems.add(itemManager.healingPotion) ;
-  }
 
-  public void setCurrentRoom(Room room) {
-    player.currentRoom = room;
-
+    room1.addItem(itemManager.getDivineSword());
+    room2.addItem(itemManager.getStrengthPotion());
+    room3.addItem(itemManager.getGreatShield());
+    room4.addItem(itemManager.getDivineShield());
+    room5.addItem(itemManager.getMap());
+    room5.addItem(itemManager.getGodStaff());
+    room6.addItem(itemManager.getSorcererStaff());
+    room7.addItem(itemManager.getStrengthPotion());
+    room8.addItem(itemManager.getMagicPotion());
+    room9.addItem(itemManager.getHealingPotion());
     room1.setEast(room2);
     room1.setSouth(room4);
     room1.setWest(room1);
@@ -78,59 +71,9 @@ public class Map {
     room9.setSouth(room9);
     room9.setEast(room9);
   }
-  /*
-  Metode til at kunne 'take' et item op med kortNavn, så hvis man fx. fandt et
-  "Divine Sword" kunne man nøjes med at skrive "Sword" for at tage det,
-  men den metode gav ikke mening fordi man ikke kunne vælge hvilket item man vil
-  'take' hvis der var flere af samme slags, fx hvis der var både et
-  "Great Shield" og et "Divine Shield".
-  .
-  .
-  .
-  void lookForItem(String targetName) {
-    for (int i = 0; i < player.currentRoom.roomItems.size(); i++) {
-      if (targetName.equals(player.currentRoom.roomItems.get(i).getNavn())) {
-        player.inventory.add(player.currentRoom.roomItems.get(i));
-        System.out.println("You found a "+ player.currentRoom.roomItems.get(i).getLangtNavn()+"! "+ player.currentRoom.roomItems.get(i).getLangtNavn()+" added to inventory.");
-        player.currentRoom.roomItems.remove(i);
-        break;
-      }
-    }
-  }
-  */
 
-  void lookForItem(String targetName) {
-
-    boolean loop = true;
-    boolean foundItem = false;
-    while (loop) {
-      for (int i = 0; i < player.currentRoom.roomItems.size(); i++) {
-        if (targetName.toUpperCase().equals(player.currentRoom.roomItems.get(i).getLangtNavn())) {
-          player.inventory.add(player.currentRoom.roomItems.get(i));
-          System.out.println("You picked up a " + player.currentRoom.roomItems.get(i).getLangtNavn() + "! " + player.currentRoom.roomItems.get(i).getLangtNavn() + " added to inventory.");
-          player.currentRoom.roomItems.remove(i);
-          foundItem = true;
-        }
-      }
-      if (!foundItem) {
-        System.out.println("Either there is no item or you typed in the item name wrong. \nRemember to type in the full name of the item you want to pick up!");
-      }
-      loop = false;
-    }
-  }
-
-
-  void dropItem(String targetName) {
-boolean dropItem = true;
-    for (int i = 0; i < player.inventory.size(); i++) {
-      if (targetName.toUpperCase().equals(player.inventory.get(i).getLangtNavn())) {
-        player.currentRoom.roomItems.add(player.inventory.get(i));
-        System.out.println("You dropped a " + player.inventory.get(i).getLangtNavn() + " in " + player.currentRoom.navn + ".\n" + player.inventory.get(i).getLangtNavn() + " has been removed from inventory.");
-        player.inventory.remove(i);
-        dropItem=false;
-      }
-    }
-    if (dropItem) System.out.println("Either there is no item or you typed in the item name wrong. \nRemember to type in the full name of the item you want to drop!");
+  Room getRoom1() {
+    return room1;
   }
 }
 

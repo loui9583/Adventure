@@ -4,8 +4,11 @@ import java.util.Scanner;
 
 public class UI {
   Map map = new Map();
-
+  Player player = new Player();
   UI() {
+    System.out.println("Enter player name: ");
+    player.setName(new Scanner(System.in).nextLine());
+
     int i = 0;
     Scanner scanner = new Scanner(System.in);
     String help = """
@@ -19,72 +22,44 @@ public class UI {
         Write "Inventory" to see the items you have picked up in your inventory.
         Additionally, you can write HELP to view instructions again, and write EXIT to exit the program. ";
         """;
-    map.setCurrentRoom(map.room1);
-
-
-    map.player.currentRoom.addToCounter();
-    System.out.println("Welcome to the game!\n" + help);
-    System.out.println("\n\n\nLet the games begin: " + map.player.currentRoom.navn);
+    player.setCurrentRoom(map.getRoom1());
+    player.getCurrentRoom().addToCounter();
+    System.out.println("Welcome to the game " + player.getName() + "!\n\n" + help);
+    player.look();
     boolean loop = true;
+
     while (loop) {
       String gameFlow = scanner.nextLine();
       gameFlow = gameFlow.toUpperCase();
-      switch (gameFlow) {
-        case "E" -> {
-          if (map.player.currentRoom.east == map.player.currentRoom) System.out.println("You cannot go this way");
-          map.setCurrentRoom(map.player.currentRoom.east);
-          map.player.currentRoom.addToCounter();
-          System.out.println("You are now in: " + map.player.currentRoom.navn);
-        }
-        case "W" -> {
-          if (map.player.currentRoom.west == map.player.currentRoom) System.out.println("You cannot go this way");
-          map.setCurrentRoom(map.player.currentRoom.west);
-          map.player.currentRoom.addToCounter();
-          System.out.println("You are now in: " + map.player.currentRoom.navn);
-        }
-        case "S" -> {
-          if (map.player.currentRoom.south == map.player.currentRoom) System.out.println("You cannot go this way");
-          map.setCurrentRoom(map.player.currentRoom.south);
-          map.player.currentRoom.addToCounter();
-          System.out.println("You are now in: " + map.player.currentRoom.navn);
-        }
-        case "N" -> {
-          if (map.player.currentRoom.north == map.player.currentRoom) System.out.println("You cannot go this way");
-          map.setCurrentRoom(map.player.currentRoom.north);
-          map.player.currentRoom.addToCounter();
-          System.out.println("You are now in: " + map.player.currentRoom.navn);
-        }
 
+      switch (gameFlow) {
+        case "E" -> player.goEast();
+        case "W" -> player.goWest();
+        case "S" -> player.goSouth();
+        case "N" -> player.goNorth();
         case "HELP" -> System.out.println(help);
 
-        case "LOOK" -> {
-          System.out.println(map.player.currentRoom.navn);
-          System.out.println("You have been in this room " + map.player.currentRoom.counter + " time(s)");
-          if (map.player.currentRoom.roomItems.size()>0){
-            System.out.println("This room has the following items: ");
-          for (int k = 0; k < map.player.currentRoom.roomItems.size(); k++) {
-            System.out.println(map.player.currentRoom.roomItems.get(k).getLangtNavn());
-          }}
-          else System.out.println("There are no items in this room.");
-        }
+        case "LOOK" -> player.look();
 
         case "TAKE" -> {
           System.out.println("Type the name of the item you want to pick up.");
-          map.lookForItem(scanner.nextLine());
+          player.takeItem(scanner.nextLine());
         }
         case "DROP" -> {
           System.out.println("Type the name of the item you want to drop.");
-          map.dropItem(scanner.nextLine());
+          player.dropItem(scanner.nextLine());
         }
-        case "INVENTORY" -> map.player.showInventory();
+        case "INVENTORY" -> player.showInventory();
+
         case "EXIT" -> loop = false;
+
         default -> {
           System.out.println("Wrong input.");
           i++;
           if (i > 2) {
+            System.out.println("It seems you are confused. Here are the instructions again");
             System.out.println(help);
             i = 0;
-
           }
         }
       }
