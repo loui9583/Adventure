@@ -2,34 +2,49 @@ package Adventure;
 
 public class ItemManager {
 
-  private  Item divineSword = new Item("SWORD", "DIVINE SWORD");
-  private  Item greatPotion = new Item("POTION", "GREAT POTION");
-  private  Item greatShield = new Item("SHIELD", "GREAT SHIELD");
-  private  Item divineShield = new Item("SHIELD", "DIVINE SHIELD");
-  private  Item map = new Item("MAP", "MAP");
-  private  Item sorcererStaff = new Item("STAFF", "SORCERER STAFF");
-  private  Item godStaff = new Item("STAFF", "GOD STAFF");
-  private  Item healingPotion = new Item("POTION", "HEALING POTION");
-  private  Item strengthPotion = new Item("POTION", "STRENGTH POTION");
-  private  Item magicPotion = new Item("POTION", "MAGIC POTION");
+  private final Item divineSword   = new Weapon("SWORD" , "DIVINE SWORD", 25)   ;
+  private final Item fist          = new Weapon("FIST"  , "FIST"        ,  5)   ;
+  private final Item basicSword    = new Weapon("SWORD" , "BASIC SWORD" , 40)   ;
+  private final Item greatPotion   = new Food  ("POTION", "GREAT POTION",50)       ;
+  private final Item greatShield   = new Item  ("SHIELD", "GREAT SHIELD")       ;
+  private final Item divineShield  = new Item  ("SHIELD", "DIVINE SHIELD")      ;
+  private final Item map           = new Item  ("MAP"   , "MAP")                ;
+  private final Item sorcererStaff = new Weapon  ("STAFF" , "SORCERER STAFF", 35)     ;
+  private final Item godStaff      = new Weapon  ("STAFF" , "GOD STAFF",60)          ;
+  private final Item healingPotion = new Food  ("POTION", "HEALING POTION",20)     ;
+  private final Item strengthPotion= new Item  ("POTION", "STRENGTH POTION")    ;
+  private final Item magicPotion   = new Item  ("POTION", "MAGIC POTION")       ;
+  private final Item meatSkewer    = new Food  ("FOOD"  , "MEAT SKEWER",10)     ;
 
-  public Item getDivineShield() {
+  public Item getFist() {
+    return fist;
+  }
+
+  public Item getBasicSword() {
+    return basicSword;
+  }
+
+  public Item getMeatSkewer() {
+    return meatSkewer;
+  }
+
+  public Item getDivineShield()  {
     return divineShield;
   }
 
-  public Item getDivineSword() {
+  public Item getDivineSword()   {
     return divineSword;
   }
 
-  public Item getGodStaff() {
+  public Item getGodStaff()      {
     return godStaff;
   }
 
-  public Item getGreatPotion() {
+  public Item getGreatPotion()   {
     return greatPotion;
   }
 
-  public Item getGreatShield() {
+  public Item getGreatShield()   {
     return greatShield;
   }
 
@@ -37,11 +52,11 @@ public class ItemManager {
     return healingPotion;
   }
 
-  public Item getMagicPotion() {
+  public Item getMagicPotion()   {
     return magicPotion;
   }
 
-  public Item getMap() {
+  public Item getMap()           {
     return map;
   }
 
@@ -49,7 +64,7 @@ public class ItemManager {
     return sorcererStaff;
   }
 
-  public Item getStrengthPotion() {
+  public Item getStrengthPotion(){
     return strengthPotion;
   }
 }
