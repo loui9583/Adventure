@@ -72,7 +72,7 @@ public class UI {
           player.dropItem(scanner.nextLine());
         }
 
-        case "CONSUME"        -> {System.out.println("Type the name of the item you want to consume!");
+        case "CONSUME"        -> {System.out.println("Type in the name of the item you want to eat, or type CANCEL.");
           player.eat(scanner.nextLine());
         }
 

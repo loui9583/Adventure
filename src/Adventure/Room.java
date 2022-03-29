@@ -98,6 +98,7 @@ while (player.getHealth()>0&&enemy.getHealth()>0) {
       case "A" -> {player.attack(player.getInventory().get(weaponIndex), enemy); playerTurn=false;}
       case "E" -> {
         System.out.println("Type the name of the weapon you want to equip, or type 'cancel' to cancel");
+        player.showInventory();
         boolean loop = true;
         while (loop) {
           String search = scanner.nextLine();
@@ -113,6 +114,7 @@ while (player.getHealth()>0&&enemy.getHealth()>0) {
         }
       }
       case "C" -> {
+        System.out.println("Type in the name of the item you want to eat, or type CANCEL.");
         player.eat(scanner.nextLine().toUpperCase());
         if (player.eatSuccess) playerTurn=false;
       }

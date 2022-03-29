@@ -130,12 +130,13 @@ public class Player {
   }
   boolean eatSuccess = false;
   void eat(String targetName) {
-    System.out.println("Type in the name of the item you want to eat. Type 'CANCEL' to cancel. ");
+targetName=targetName.toUpperCase();
     boolean noItem = true;
     while (noItem){
     for (int i = 0; i < inventory.size(); i++) {
       if (targetName.toUpperCase().equals(inventory.get(i).getLangtNavn())) {
       if (inventory.get(i).getHealth()==0) System.out.println("You can't eat this weEbo");
+
       else {setHealth(getHealth()+inventory.get(i).getHealth());
         System.out.println("You ate "+inventory.get(i).getLangtNavn()+"! You received "+inventory.get(i).getHealth()+" HP. Your hp is now: "+getHealth());
         inventory.remove(i);}
@@ -143,20 +144,25 @@ public class Player {
       eatSuccess=true;
 }
     }
+      if (targetName.toUpperCase().equals("CANCEL")) {
+        System.out.println("Cancelling..\n"); noItem=false; look();}
+    }
     if (noItem){
       System.out.println("Either there is no item or you typed in the item name wrong. " +
           "\nRemember to type in the full name of the item you want to consume!");
       targetName=new Scanner(System.in).nextLine();
     }
 
-      if (targetName.equals("CANCEL")) noItem=false;
-    }
+
   }
 
   void attack(Item weapon,Player enemy){
-    enemy.setHealth(enemy.getHealth()-weapon.getDamage());
-    if (weapon.getDamage()>0) System.out.println(getName()+" did "+weapon.getDamage()+ " damage to " + enemy.getName()+ ". "+enemy.getName()+" now has "+enemy.getHealth()+" HP.");
-    else System.out.println("You can't use this "+weapon.getLangtNavn()+" to fight with n00btard?");
+    if (weapon.getAmmo()<=0) System.out.println("Your weapon has no ammo.\nNext turn, choose another weapon.\n\n");
+    if (weapon.getDamage()>0&&weapon.getAmmo()>0) System.out.println(getName()+" did "+weapon.getDamage()+ " damage to " + enemy.getName()+ ". "+enemy.getName()+" now has "+(enemy.getHealth()- weapon.getDamage())+" HP.");
+    if (weapon.getAmmo()>0) {enemy.setHealth(enemy.getHealth()-weapon.getDamage());weapon.setAmmo(weapon.getAmmo()-weapon.getAmmoSubt());}
+
+
+    if (weapon.getDamage()<=0) System.out.println("You can't use this "+weapon.getLangtNavn()+" to fight with n00btard?");
   }
 
   public ArrayList<Item> getInventory() {

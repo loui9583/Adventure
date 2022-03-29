@@ -31,6 +31,7 @@ public class Map {
     room7.addItem(itemManager.getStrengthPotion());
     room8.addItem(itemManager.getMagicPotion())   ;
     room9.addItem(itemManager.getHealingPotion()) ;
+    room1.addItem(itemManager.getCrossBow())      ;
 
     room1.setEast(room2)  ;
     room1.setSouth(room4) ;
